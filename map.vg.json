@@ -46,7 +46,7 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/saachirajpal/FIT3179/refs/heads/main/states.topojson",
-        "format": {"type": "topojson", "feature": "state"}
+        "format": {"type": "topojson", "feature": "state", "strokeWidth": 0.5}
       },
       "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
     }
