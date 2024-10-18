@@ -1,0 +1,37 @@
+Age Group,Gender,Health Professional,Proportion (%)
+16–34,Male,General Practitioner,7
+35–64,Male,General Practitioner,4.9
+65–85,Male,General Practitioner,1.3
+16–34,Female,General Practitioner,16
+35–64,Female,General Practitioner,9.4
+65–85,Female,General Practitioner,3.7
+16–34,Persons,General Practitioner,11.4
+35–64,Persons,General Practitioner,7.1
+65–85,Persons,General Practitioner,2.5
+16–34,Persons,Psychiatrist,2.3
+35–64,Persons,Psychiatrist,1.4
+65–85,Persons,Psychiatrist,1.4
+16–34,Male,Psychologist,5.4
+35–64,Male,Psychologist,2.4
+65–85,Male,Psychologist,0.9
+16–34,Female,Psychologist,10.8
+35–64,Female,Psychologist,4.7
+65–85,Female,Psychologist,1.4
+65–85,Persons,Psychologist,8.1
+16–34,Persons,Psychologist,3.5
+35–64,Persons,Psychologist,1.2
+16–34,Male,Psychiatrist,2.3
+35–64,Male,Psychiatrist,1.4
+65–85,Male,Psychiatrist,1.4
+16–34,Female,Psychiatrist,4.3
+35–64,Female,Psychiatrist,2
+65–85,Female,Psychiatrist,0.6
+16–34,Male,Other health professional,2.7
+35–64,Male,Other health professional,1.7
+65–85,Male,Other health professional,0.3
+16–34,Female,Other health professional,6.5
+35–64,Female,Other health professional,3
+65–85,Female,Other health professional,0.8
+16–34,Persons,Other health professional,17
+35–64,Persons,Other health professional,10.5
+65–85,Persons,Other health professional,6.1
