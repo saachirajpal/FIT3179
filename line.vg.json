@@ -1,0 +1,65 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 250,
+    "background": "#f5f5f5",
+    "data": {
+      "url": "https://raw.githubusercontent.com/saachirajpal/FIT3179/refs/heads/main/health%20professionals.csv"
+    },
+    "params": [
+      {
+        "name": "genderSelection",
+        "value": "Persons",
+        "bind": {
+          "input": "select",
+          "options": ["Male", "Female", "Persons"],
+          "labels": ["Male", "Female", "Persons"],
+          "name": "Select Gender: "
+        }
+      },
+      {
+        "name": "healthProfessionalSelection",
+        "value": "All",
+        "bind": {
+          "input": "select",
+          "options": ["All", "General Practitioner", "Psychologist", "Psychiatrist", "Other health professional"],
+          "name": "Select Health Professional: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum.Gender == genderSelection"},
+      {"filter": "healthProfessionalSelection == 'All' || datum['Health Professional'] == healthProfessionalSelection"}
+    ],
+    "mark": {
+      "type": "line",
+      "interpolate": "monotone",
+      "point": {"size": 50, "filled": true}
+    },
+    "encoding": {
+      "x": {
+        "field": "Age Group",
+        "type": "ordinal",
+        "title": "Age Group"
+      },
+      "y": {
+        "field": "Proportion (%)",
+        "type": "quantitative",
+        "title": "Proportion of Consultations (%)"
+      },
+      "color": {
+        "field": "Health Professional",
+        "type": "nominal",
+        "title": "Health Professional",
+        "scale": {
+          "domain": ["General Practitioner", "Psychologist", "Psychiatrist", "Other health professional"],
+          "range": ["#9fe2bf", "#a7c7e7", "#4dc1c0", "#2a7886" ]
+        }
+      },
+      "tooltip": [
+        {"field": "Health Professional", "title": "Health Professional"},
+        {"field": "Proportion (%)", "title": "Proportion (%)"},
+        {"field": "Gender", "title": "Gender"},
+        {"field": "Age Group", "title": "Age Group"}
+      ]
+    }
+  }

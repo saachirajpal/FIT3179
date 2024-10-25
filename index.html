@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+<script src="vega_lite_vis.js"></script>
+
+ <!-- Google font -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+    <title>Data Visualisation 2 </title>
+</head>
+<body>
+<div class = page>
+<h1>Outcomes from Australia's National Study of Mental Health and Wellbeing 2020-2022</h1>
+<!-- pure grid group -->
+<div class="pure-g">
+    <div class="pure-u-1-2">
+      <h3> Introduction </h3>
+        <p>From 2020-2022 the Australian Bureau of Statistics <br>
+            conducted the National Study of Mental Health. This <br>
+            visualisation will <b>provide insights</b> into the results of <br>
+            this survey, highlighting the areas which require <br>
+          <b>extra resources</b> to support Australians who suffer <br>
+            from mental health conditions.</p>
+            <p> This survey covered anxiety, affective and substance use <br>
+            disorders.This visualisation refers to lifetime and 12-month <br>
+            mental disorders where lifetime mental disorders <br>
+            refer to individuals who have met the diagnostic <br>
+            criteria for a mental disorder at some point in <br>
+            their life, but not necessarily throughout their <br>
+            entire life. 12-month mental disorders refer to <br>
+            those who met the criteria and also had symptoms in <br>
+            the 12 months prior to the survey.</p>
+            <p> The dashboard will focus on 12-month and <br>
+              lifetime mental disorders with symptoms
+            </p>
+    </div>
+    <div class="pure-u-1-2">
+      <div class="description description-left">
+        <h3>Proportion of Population with Mental Disorders by Age</h3>
+        <p> <b>To begin,</b> the proportions of Australia's population which <br>
+           suffer from mental health conditions sorted by age <br>
+           groups is displayed within the chart below</p>
+            <div class="pure-u-1-2">
+              <div id="pie" class="vis-container"></div>
+            </div>
+      </div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <h2>Breakdown of Mental Health Disorders Australians' Suffer From </h2>
+    <h3> Breakdown of Disorders by Gender </h3>
+      <p> Further analysis can be taken to show the 
+        types of disorders Australians suffer from the most 
+        and how this changes across genders. </p>
+      <div id="bar" class="vis-container"></div>
+
+<!-- end pure grid group -->
+
+<!-- pure grid group -->
+<h3> Lifetime Anxiety with Symptoms Across Australia </h3>
+<p> Since anxiety disorders are the most common amongst mental disorders people, especially women sufer from within Australia. Where 17.2% of the population suffer from any kind of anxiety disorder and 21.1% of women suffer from an anxiety disorder, the map below highlights the proportion of the population suffering from lifetime anxiety with symptoms within each state. </p>
+<div id="map" class="vis-container"></div>
+
+<!-- end pure grid group -->
+
+<h2>Treatments Most Used by Australian's with Mental Disorders</h2>
+<!-- pure grid group -->
+<div class="pure-g">
+  <div class="pure-u-1-2">
+    <h3>Proprotion of Australian's Visiting Health Professionals with Lifetime Disoders</h3>
+    <p>The line graph outlines which health professionals are most visited by those with lifetime mental health disorders with symptoms.</p>
+    <p>Other health professionals which people visit may include the following: mental health nurse, other mental health professional, specialist doctors and surgeons and pharmacists</p>
+    <div id="line" class="vis-container"></div>
+  </div>
+  <div class="pure-u-1-2">
+    <div class="description description-left">
+      <h3>Mental Health Medications Dispensed</h3>
+        <p> <br> The stacked bar chart below shows which medications are most dispensed for persons within each age range with lifetime mental disorders and symptoms. </p>
+        <p>The chart  illustrates differences in dispensing ratesfor each age range and potential treatment preferences for mental health issues.</p>
+          <div class="pure-u-1-2">
+            <div id="stacked" class="vis-container"></div>
+          </div>
+    </div>
+  </div>
+</div>
+<!-- end pure grid group -->
+
+<p> By Saachi Rajpal October 2024</p>
+<p>Data Source: Australian Bureau of Statistics: National Study of Mental Health and Wellbeing published 2023</p>
+</div>
+
+
+<script type="text/javascript">
+    var vg_1="map.vg.json";
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+vegaEmbed("#map", vg_1).then(function(result) {
+}).catch(console.error);
+
+    var vg_2="pie.vg.json";
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+vegaEmbed("#pie", vg_2).then(function(result) {
+}).catch(console.error);
+
+  var vg_3="bar.vg.json";
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+vegaEmbed("#bar", vg_3).then(function(result) {
+}).catch(console.error);
+
+  var vg_4="line.vg.json";
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+vegaEmbed("#line", vg_4).then(function(result) {
+}).catch(console.error);
+
+  var vg_5="stacked.vg.json";
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+vegaEmbed("#stacked", vg_5).then(function(result) {
+}).catch(console.error);
+</script>
+</body>
+</html>
+

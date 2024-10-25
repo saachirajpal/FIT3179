@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Pie chart showing mental disorder distribution by age group with dropdown filter and annotation for 'No mental disorder'.",
+  "width": 200,
+  "height": 200,
+  "background": "#f5f5f5",
+  "data": {
+    "url": "https://raw.githubusercontent.com/saachirajpal/FIT3179/refs/heads/main/pie.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "filter": "datum['Age'] == ageRange_Age"
+    }
+  ],
+  "params": [
+    {
+      "name": "ageRange_Age",
+      "value": "1634",
+      "bind": {
+        "input": "select",
+        "options": ["1634", "3564", "6585"],
+        "labels": ["16-34", "35-64", "65-85"],
+        "name": "Select Age Range: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "tooltip": true
+      },
+      "encoding": {
+        "theta": {
+          "field": "Percentage",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Category",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Anxiety disorders",
+              "Affective disorders",
+              "Substance Use disorders",
+              "Any 12-month mental disorder",
+              "No 12-month mental disorder"
+            ],
+            "range": ["#bee9e8", "#62b6cb", "#1b4965", "#cae9ff", "#5fa8d3"]
+          },
+          "legend": {"title": "Category"}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -90,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "sum",
+          "field": "Percentage",
+          "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "test": "datum['Category'] == 'No 12-month mental disorder'",
+            "value": "black"
+          },
+          "value": "transparent"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum['Category'] == 'No 12-month mental disorder'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "black",
+        "dx": -80,
+        "dy": -15
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "sum",
+          "field": "Percentage",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum['Category'] == 'No 12-month mental disorder'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "black",
+        "dx": -45,
+        "dy": -15
+      },
+      "encoding": {
+        "text": {
+          "value": "% of the"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum['Category'] == 'No 12-month mental disorder'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "black",
+        "dx": -50,
+        "dy": 0
+      },
+      "encoding": {
+        "text": {
+          "value": "population"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum['Category'] == 'No 12-month mental disorder'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "black",
+        "dx": -50,
+        "dy": 15
+      },
+      "encoding": {
+        "text": {
+          "value": "do not have any"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum['Category'] == 'No 12-month mental disorder'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "black",
+        "dx": -50,
+        "dy": 30 
+      },
+      "encoding": {
+        "text": {
+          "value": "mental disorders"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum['Category'] == 'No 12-month mental disorder'"
+        }
+      ]
+    }
+  ]
+}

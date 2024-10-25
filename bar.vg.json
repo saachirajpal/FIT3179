@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "#f5f5f5",
+    "data": {
+      "url": "https://raw.githubusercontent.com/saachirajpal/FIT3179/refs/heads/main/disordered%20data.csv"
+    },
+    "params": [
+      {
+        "name": "selectedDisorder",
+        "value": "Anxiety disorders",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Anxiety disorders",
+            "Affective disorders",
+            "Substance Use disorders"
+          ],
+          "name": "Disorder Type "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "fold": ["Males (%)", "Females (%)", "Persons (%)"],
+        "as": ["Gender", "Percentage"]
+      },
+      {"calculate": "datum['Disorder Type']", "as": "Disorder Group"},
+      {
+        "filter": {
+          "field": "Disorder Group",
+          "oneOf": [
+            "Anxiety disorders",
+            "Affective disorders",
+            "Substance Use disorders"
+          ]
+        }
+      },
+      {"filter": "datum['Disorder Group'] === selectedDisorder"},
+      {
+        "calculate": "datum['Disorder Group'] === 'Anxiety disorders' ? 'Anxiety' : datum['Disorder Group'] === 'Affective disorders' ? 'Affective' : 'Substance'",
+        "as": "Disorder Category"
+      }
+    ],
+    "hconcat": [
+      {
+        "mark": "bar",
+        "width": 150,
+        "encoding": {
+          "x": {
+            "field": "Disorder",
+            "type": "nominal",
+            "axis": {"title": "Disorder"},
+            "sort": [
+              "Any Anxiety Disorder",
+              "Any Affective Disorder",
+              "Any Substance Use Disorder"
+            ]
+          },
+          "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {"title": "Percentage"},
+            "scale": {"domain": [0, 25]}
+          },
+          "color": {
+            "field": "Disorder Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Anxiety", "Affective", "Substance"],
+              "range": ["#bee9e8", "#62b6cb", "#1b4965"]
+            }
+          },
+          "tooltip": [
+            {"field": "Gender"},
+            {"field": "Percentage"},
+            {"field": "Disorder Group"}
+          ]
+        },
+        "transform": [{"filter": "datum.Gender === 'Persons (%)'"}],
+        "title": "Persons"
+      },
+      {
+        "mark": "bar",
+        "width": 150,
+        "encoding": {
+          "x": {
+            "field": "Disorder",
+            "type": "nominal",
+            "axis": {"title": "Disorder"},
+            "sort": [
+              "Any Anxiety Disorder",
+              "Any Affective Disorder",
+              "Any Substance Use Disorder"
+            ]
+          },
+          "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {"title": "Percentage"},
+            "scale": {"domain": [0, 25]}
+          },
+          "color": {
+            "field": "Disorder Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Anxiety", "Affective", "Substance"],
+              "range": ["#bee9e8", "#62b6cb", "#1b4965"]
+            }
+          },
+          "tooltip": [
+            {"field": "Gender"},
+            {"field": "Percentage"},
+            {"field": "Disorder Group"}
+          ]
+        },
+        "transform": [{"filter": "datum.Gender === 'Females (%)'"}],
+        "title": "Females"
+      },
+      {
+        "mark": "bar",
+        "width": 150,
+        "encoding": {
+          "x": {
+            "field": "Disorder",
+            "type": "nominal",
+            "axis": {"title": "Disorder"},
+            "sort": [
+              "Any Anxiety Disorder",
+              "Any Affective Disorder",
+              "Any Substance Use Disorder"
+            ]
+          },
+          "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {"title": "Percentage"},
+            "scale": {"domain": [0, 25]}
+          },
+          "color": {
+            "field": "Disorder Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Anxiety", "Affective", "Substance"],
+              "range": ["#bee9e8", "#62b6cb", "#1b4965"]
+            }
+          },
+          "tooltip": [
+            {"field": "Gender"},
+            {"field": "Percentage"},
+            {"field": "Disorder Group"}
+          ]
+        },
+        "transform": [{"filter": "datum.Gender === 'Males (%)'"}],
+        "title": "Males"
+      }
+    ],
+    "config": {"legend": {"orient": "right"}}
+  }

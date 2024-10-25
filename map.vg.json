@@ -1,0 +1,92 @@
+{ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"view": {"stroke": ""}},
+  "background": "#f5f5f5", 
+  "width": 550,
+  "height": 300,
+  "layer": [
+     {
+      "data": {
+        "values": [{"x": 0, "y": 0, "x2": 1000, "y2": 600}]  
+      },
+      "mark": {
+        "type": "rect" 
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "axis": null},
+        "y": {"field": "y", "type": "quantitative", "axis": null},
+        "x2": {"field": "x2"},
+        "y2": {"field": "y2"},
+        "fill": {"value": "#e0f7ff", "legend": null}  
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/saachirajpal/FIT3179/refs/heads/main/states.topojson",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/saachirajpal/FIT3179/refs/heads/main/map%20data.csv",
+              "format": {"type": "csv"}
+            },
+            "key": "State",
+            "fields": ["Proportion with Lifetime anxiety and symptoms"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "Proportion with Lifetime anxiety and symptoms",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "scheme": "tealblues"
+            },
+          "legend": {"title": "Proportion with anxiety", 
+          "orient": "bottom", 
+          "labelFontSize": 10,
+          "titleFontSize": 11, 
+          "symbolSize": 60}
+        },
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "Proportion with Lifetime anxiety and symptoms",
+            "type": "quantitative",
+            "title": "Proportion with Anxiety"
+          }
+        ]
+      }
+    },
+     {
+    "data": {
+        "values": [{"State": "19% of the Population of ACT suffer from Lifetime Anxiety", "longitude": 149.1245, "latitude": -35.3075}]
+      },
+      "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5, "fontSize": 10, "fontStyle": "bold", "color": "black"},
+      "encoding": {
+        "text": {"field": "State"},
+        "longitude": {"field": "longitude"},
+        "latitude": {"field": "latitude"}
+      }
+    },
+    {
+      "data": {
+        "values": [{"State": "NT has the highest proportion of anxiety at 22.4%", "longitude": 134.4950, "latitude": -19.2925}]
+      },
+      "mark": {"type": "text", "align": "left", "dx": -8, "dy": -40, "fontSize": 10, "fontStyle": "bold", "color": "black"},
+      "encoding": {
+        "text": {"field": "State"},
+        "longitude": {"field": "longitude"},
+        "latitude": {"field": "latitude"}
+      }
+    }
+  ]
+}
